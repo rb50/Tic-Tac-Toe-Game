@@ -83,7 +83,7 @@ td, tr {
   font-size: 5rem;
 }
 
-#playersturn {
+#computersturn {
   position: relative;
   left: 50px;
   bottom: 10px;
@@ -93,4 +93,11 @@ td, tr {
 .initialselection {
   text-align: center;
   font-size: 2rem;
+}
+
+.turns {
+  font-size: 7rem;
+  font-family: sans-serif;
+  text-align: center;
+
 }

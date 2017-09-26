@@ -63,6 +63,7 @@ window.onload = function() {
 
     //Players Turn functionality
     function playersTurn(){
+      document.getElementById('computersturn').innerHTML = "Player's Turn";
 
       //add event listeners for all available squares.
       function listeners() {
@@ -88,14 +89,18 @@ window.onload = function() {
 
       //clicker function when player clicks, then remove listeners and move to Computer's Turn
       function clicker(e) {
+        setTimeout(function() {clicker2()}, 500);
         e.target.innerHTML = "<p class='turns'>"+playerStatus.letter+"</p>";
+        document.getElementById('computersturn').innerHTML = "Computer's Turn";
+        function clicker2(){
+          removeListeners(e);
 
-        removeListeners(e);
-        checkForWin(playerStatus);
-        if(!winner) {
-          computersTurn();
+          checkForWin(playerStatus);
+          
+          if(!winner) {
+            computersTurn();
+          }
         }
-
       }
       listeners();
 
@@ -108,6 +113,7 @@ window.onload = function() {
 
 
     function computersTurn(){
+
        var computerMove = "";
        for(let i = 0; i < squares.length; i++) {
           if(squares[i]) {
@@ -117,11 +123,16 @@ window.onload = function() {
             break;
           }
         }
+
+        setTimeout(function(){computersTurn2()}, 50)
         document.getElementById(computerMove).innerHTML = "<p class='turns'>"+computerStatus.letter+"</p>"
 
-        checkForWin(computerStatus);
-        if(!winner){
-          playersTurn();
+
+        function computersTurn2(){
+          checkForWin(computerStatus);
+          if(!winner){
+            playersTurn();
+          }
         }
 
 

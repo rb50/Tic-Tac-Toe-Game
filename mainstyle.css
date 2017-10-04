@@ -90,6 +90,12 @@ td, tr {
 
 }
 
+#resetbutton {
+  position: relative;
+  left: 240px;
+  bottom: 10px;
+}
+
 .initialselection {
   text-align: center;
   font-size: 2rem;

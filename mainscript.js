@@ -1,6 +1,6 @@
 window.onload = function() {
 
-  // objects keep the status of the computer, player and the grid
+  // objects keep the status of the computer & player
   var playerStatus = {
     squares: [],
     name:'PLAYER'
@@ -37,10 +37,24 @@ window.onload = function() {
   }
 
   //called by Xclick or Oclick. Displays grid.
-  function gridDisplay(grid){
+  function gridDisplay(grid) {
     document.getElementById("grid").innerHTML = grid;
     document.getElementById("computersturn").style.display ="inline-block";
+    document.getElementById("resetbutton").style.display ="inline-block";
     document.getElementById("grid").style.top ="-27px";
+    document.getElementById("resetbutton").addEventListener("click", reset, false);
+
+    //if reset button is clicked
+    function reset() {
+      computerStatus.squares = [];
+      playerStatus.squares = [];
+      if(playerStatus.letter === 'O'){
+        Oclick();
+      } else {
+        Xclick();
+      }
+
+    }
   }
 
 
@@ -55,15 +69,16 @@ window.onload = function() {
 
 
     //change narrative to Player's Turn at the top of the grid
-    document.getElementById('computersturn').innerHTML = "Player's Turn"
+    document.getElementById('computersturn').innerHTML = "Player's Turn";
 
 
     //keep track of available squares
-    var squares = ["a1", "a2", "a3", "b1", "b3", "c1", "c2", "c3"]
+    var squares = ["a1", "a2", "a3", "b1", "b3", "c1", "c2", "c3"];
 
     //Players Turn functionality
     function playersTurn(){
       document.getElementById('computersturn').innerHTML = "Player's Turn";
+      document.getElementById('resetbutton').style.left = "265px";
 
       //add event listeners for all available squares.
       function listeners() {
@@ -92,11 +107,13 @@ window.onload = function() {
         setTimeout(function() {clicker2()}, 500);
         e.target.innerHTML = "<p class='turns'>"+playerStatus.letter+"</p>";
         document.getElementById('computersturn').innerHTML = "Computer's Turn";
+        document.getElementById('resetbutton').style.left = "240px";
+
         function clicker2(){
           removeListeners(e);
 
           checkForWin(playerStatus);
-          
+
           if(!winner) {
             computersTurn();
           }
@@ -105,14 +122,14 @@ window.onload = function() {
       listeners();
 
 
-
+    // end of playersTurn
     }
 
     playersTurn();
 
 
 
-    function computersTurn(){
+    function computersTurn() {
 
        var computerMove = "";
        for(let i = 0; i < squares.length; i++) {
@@ -163,7 +180,7 @@ window.onload = function() {
             }
           }
           if (counter === 3){
-            console.log(who);
+
             alert(who.name + 'WINS')
             winner = true;
 
@@ -171,7 +188,7 @@ window.onload = function() {
           }
 
         }
-  }
+      }
 
 
 
@@ -181,6 +198,6 @@ window.onload = function() {
 
 
 
-}
+    }
 
 };

@@ -1,2 +1,3 @@
-# tic-tac-toe-game
-A simple tic tac toe game made using JS
+# Tic Tac Toe Game
+
+A Tic Tac Toe Game written in Javascript, HTML and CSS and not using any libraries. 
